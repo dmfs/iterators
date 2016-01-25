@@ -31,7 +31,7 @@ import java.util.Set;
  * @param <E>
  *            The type if the iterated values.
  */
-public final class UniqueIterator<E> extends AbstractFilteredIterator<E>
+public final class DistinctIterator<E> extends AbstractFilteredIterator<E>
 {
 
 	/**
@@ -39,7 +39,7 @@ public final class UniqueIterator<E> extends AbstractFilteredIterator<E>
 	 * 
 	 * @param iterator
 	 */
-	public UniqueIterator(final Iterator<E> iterator)
+	public DistinctIterator(final Iterator<E> iterator)
 	{
 		super(iterator, new IteratorFilter<E>()
 		{

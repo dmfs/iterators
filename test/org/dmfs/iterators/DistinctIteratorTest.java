@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.Test;
 
 
-public class UniqueIteratorTest
+public class DistinctIteratorTest
 {
 
 	@Test
@@ -24,16 +24,16 @@ public class UniqueIteratorTest
 		List<String> list4 = Arrays.asList(new String[] { "1", "2", "3", "4", "5" });
 
 		// test trivial case with empty iterator
-		assertIterateSame(emptyList.iterator(), new UniqueIterator<String>(emptyList.iterator()));
+		assertIterateSame(emptyList.iterator(), new DistinctIterator<String>(emptyList.iterator()));
 
 		// no duplicates
-		assertIterateSame(list1.iterator(), new UniqueIterator<String>(list1.iterator()));
+		assertIterateSame(list1.iterator(), new DistinctIterator<String>(list1.iterator()));
 
 		// some duplicates
-		assertIterateSame(list1.iterator(), new UniqueIterator<String>(list2.iterator()));
+		assertIterateSame(list1.iterator(), new DistinctIterator<String>(list2.iterator()));
 
 		// some more duplicates
-		assertIterateSame(list4.iterator(), new UniqueIterator<String>(list3.iterator()));
+		assertIterateSame(list4.iterator(), new DistinctIterator<String>(list3.iterator()));
 	}
 
 

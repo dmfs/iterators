@@ -7,7 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ ArrayIteratorTest.class, ConvertedIteratorTest.class, FilteredIteratorTest.class, SerialIteratorTest.class, SerialIteratorIteratorTest.class,
-	SingletonIteratorTest.class, UniqueIteratorTest.class })
+	SingletonIteratorTest.class, DistinctIteratorTest.class })
 public class AllTests
 {
 
