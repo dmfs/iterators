@@ -17,9 +17,10 @@
 
 package org.dmfs.iterators;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
+import org.dmfs.iterators.utils.SlimSet;
 
 
 /**
@@ -29,7 +30,7 @@ import java.util.Set;
  * @author Marten Gajda <marten@dmfs.org>
  * 
  * @param <E>
- *            The type if the iterated values.
+ *            The type of the iterated values.
  */
 public final class DistinctIterator<E> extends AbstractFilteredIterator<E>
 {
@@ -43,8 +44,7 @@ public final class DistinctIterator<E> extends AbstractFilteredIterator<E>
 	{
 		super(iterator, new IteratorFilter<E>()
 		{
-			// TODO: use a more efficient Set implementation of possible
-			private final Set<E> mIteratedElements = new HashSet<E>(32);
+			private final Set<E> mIteratedElements = new SlimSet<E>(32);
 
 
 			@Override
