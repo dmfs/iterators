@@ -7,8 +7,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 
 @RunWith(Suite.class)
-@SuiteClasses({ ArrayIteratorTest.class, ConvertedIteratorTest.class, FilteredIteratorTest.class, SerialIteratorTest.class, SerialIteratorIteratorTest.class,
-	SingletonIteratorTest.class, DistinctIteratorTest.class, SlimSetTest.class })
+@SuiteClasses({ ArrayIteratorTest.class, ConvertedIteratorTest.class, FilteredIteratorTest.class, SerialIteratorTest.class, SerialIterableIteratorTest.class,
+	SerialIteratorIteratorTest.class, SingletonIteratorTest.class, DistinctIteratorTest.class, SlimSetTest.class })
 public class AllTests
 {
 
