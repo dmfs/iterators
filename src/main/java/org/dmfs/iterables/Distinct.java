@@ -1,0 +1,57 @@
+/*
+ * Copyright (C) 2016 Marten Gajda <marten@dmfs.org>
+ *
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.dmfs.iterables;
+
+import org.dmfs.iterators.DistinctIterator;
+
+import java.util.Iterator;
+
+
+/**
+ * {@link Iterable} decorator that removes any duplicates from another {@link Iterable}, keeping only the first
+ * occurrence of each iterated value.
+ *
+ * @param <T>
+ *
+ * @author Marten Gajda <marten@dmfs.org>
+ */
+public final class Distinct<T> implements Iterable<T>
+{
+
+    private final Iterable<T> mDelegate;
+
+
+    /**
+     * Creates an {@link Iterable} that iterates each value of the given {@link Iterable} exactly once.
+     *
+     * @param delegate
+     *         Another {@link Iterable}.
+     */
+    public Distinct(Iterable<T> delegate)
+    {
+        mDelegate = delegate;
+    }
+
+
+    @Override
+    public Iterator<T> iterator()
+    {
+        return new DistinctIterator<T>(mDelegate.iterator());
+    }
+
+}
