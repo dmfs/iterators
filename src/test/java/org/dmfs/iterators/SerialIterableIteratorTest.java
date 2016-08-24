@@ -2,10 +2,7 @@ package org.dmfs.iterators;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -70,5 +67,15 @@ public class SerialIterableIteratorTest
         }
 
         assertFalse(iterator2.hasNext());
+    }
+
+
+    @Test(expected = NoSuchElementException.class)
+    public void testNextThrows()
+    {
+        new SerialIterableIterator<String>(
+                new SingletonIterator<Iterable<String>>(
+                        Collections.<String>emptyList()))
+                .next();
     }
 }
