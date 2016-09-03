@@ -7,7 +7,7 @@ __A collection of Iterator implementations__
 
 ## License
 
-Copyright (c) Marten Gajda 2016
+Copyright 2017 dmfs GmbH
 
 
 Licensed under the Apache License, Version 2.0 (the "License");

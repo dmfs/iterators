@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +17,7 @@
 
 package org.dmfs.iterables;
 
+import org.dmfs.iterators.EmptyIterator;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -32,7 +33,7 @@ public class RepeatableTest
     @Test
     public void testEmptyIterator()
     {
-        Iterable<Object> i = new Repeatable<Object>(Collections.emptyIterator());
+        Iterable<Object> i = new Repeatable<Object>(EmptyIterator.instance());
         assertFalse(i.iterator().hasNext());
         assertFalse(i.iterator().hasNext());
         assertFalse(i.iterator().hasNext());

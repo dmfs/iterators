@@ -1,13 +1,13 @@
 /*
- * Copyright (C) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,19 +17,18 @@
 
 package org.dmfs.iterables;
 
-import org.dmfs.iterators.CsvIterator;
-
 import java.util.Iterator;
 
 
 /**
- * An {@link Iterable} that iterates the elements of a String of a comma (or other character) separated value list.
+ * An {@link Iterable} which iterates the elements of a {@link CharSequence} of a comma (or other character) separated value
+ * list.
  * <p/>
  * Example:
  * <p>
  * <pre>
  * <code>
- * 	Iterator<String> i = new CsvIterable<String>("a, b,def,123", ',').iterator();
+ * 	Iterator<CharSequence> i = new Split("a, b,def,123", ',').iterator();
  * 	i.next(); // returns &quot;a&quot;
  * 	i.next(); // returns &quot; b&quot;
  * 	i.next(); // returns &quot;def&quot;
@@ -44,47 +43,47 @@ import java.util.Iterator;
  * <p>
  * <pre>
  * <code>
- * 	Iterator<String> i = new CsvIterable<String>("\"a, b\",\"def,123\"", ',').iterator();
+ * 	Iterator<CharSequence> i = new Split("\"a, b\",\"def,123\"", ',').iterator();
  * 	i.next(); // returns &quot;a, b&quot;
  * 	i.next(); // returns &quot;def,123&quot;
  * 	i.hasNext(); // false
  * </code>
  * </pre>
  * <p>
- * Iterating an empty String or a string without (unquoted) separators will return exactly one element.
+ * Iterating an empty CharSequence or a CharSequence without (unquoted) separators will return exactly one element.
  * <p/>
  * Example:
  * <p>
  * <pre>
  * <code>
- * 	Iterator<String> i = new CsvIterable<String>("", ',').iterator();
+ * 	Iterator<CharSequence> i = new Split("", ',').iterator();
  * 	i.next(); // returns &quot;&quot;
  * 	i.hasNext(); // false
  *
- * 	Iterator<String> i2 = new CsvIterable<String>("\"abc,def\"", ',').iterator();
+ * 	Iterator<CharSequence> i2 = new Split("\"abc,def\"", ',').iterator();
  * 	i2.next(); // returns &quot;abc,def&quot;
  * 	i2.hasNext(); // false
  * </code>
  * </pre>
  *
- * @author Marten Gajda <marten@dmfs.org>
+ * @author Marten Gajda
  */
-public final class Separated implements Iterable<String>
+public final class Split implements Iterable<CharSequence>
 {
-    private String mValue;
+    private CharSequence mValue;
     private char mSeparator;
 
 
     /**
-     * Creates an {@link Iterable} that returns {@link Iterator}s for all elements of the given string which are
+     * Creates an {@link Iterable} that returns {@link Iterator}s for all elements of the given CharSequence which are
      * separated by the given <code>separator</code>.
      *
      * @param value
-     *         The string that contains a list of values.
+     *         The CharSequence that contains a list of values.
      * @param separator
      *         The separator that separates the values.
      */
-    public Separated(String value, char separator)
+    public Split(CharSequence value, char separator)
     {
         mValue = value;
         mSeparator = separator;
@@ -92,9 +91,9 @@ public final class Separated implements Iterable<String>
 
 
     @Override
-    public Iterator<String> iterator()
+    public Iterator<CharSequence> iterator()
     {
-        return new CsvIterator(mValue, mSeparator);
+        return new org.dmfs.iterators.Split(mValue, mSeparator);
     }
 
 }

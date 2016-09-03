@@ -1,13 +1,13 @@
 /*
- * Copyright (C) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,14 +22,16 @@ import java.util.NoSuchElementException;
 
 
 /**
- * An abstract {@link Iterator} that iterates the elements of another {@link Iterator}, if an {@link IteratorFilter}
- * permits it.
+ * An abstract {@link Iterator} that iterates the elements of another {@link Iterator}, if a {@link Filter} permits
+ * it.
  *
  * @param <E>
  *         The type of the iterated values.
  *
- * @author Marten Gajda <marten@dmfs.org>
+ * @author Marten Gajda
+ * @deprecated To be removed in version 2.0
  */
+@Deprecated
 public abstract class AbstractFilteredIterator<E> extends AbstractBaseIterator<E>
 {
 
@@ -38,7 +40,10 @@ public abstract class AbstractFilteredIterator<E> extends AbstractBaseIterator<E
      *
      * @param <E>
      *         The type of the filtered elements.
+     *
+     * @deprecated in favor of {@link Filter}
      */
+    @Deprecated
     public interface IteratorFilter<E>
     {
         /**
@@ -47,18 +52,34 @@ public abstract class AbstractFilteredIterator<E> extends AbstractBaseIterator<E
          * @param element
          *         The element to check.
          *
-         * @return <code>true</code> to return the element as a result of the Iterator, <code>false</code> to omit this
-         * element.
+         * @return <code>true</code> to return the element as a result of the Iterator, <code>false</code> to omit this element.
          */
         boolean iterate(E element);
     }
 
 
     private final Iterator<E> mIterator;
-    private final IteratorFilter<E> mFilter;
+    private final Filter<E> mFilter;
 
     private E mNext;
     private boolean mHasNext;
+
+
+    /**
+     * Creates a filtered {@link Iterator} that iterates the elements of the given {@link Iterator} if the given {@link
+     * Filter} permits it.
+     *
+     * @param iterator
+     *         The {@link Iterator} to be filtered.
+     * @param filter
+     *         The {@link Filter}.
+     */
+    public AbstractFilteredIterator(final Iterator<E> iterator, final Filter<E> filter)
+    {
+        mIterator = iterator;
+        mFilter = filter;
+        moveToNext();
+    }
 
 
     /**
@@ -67,13 +88,24 @@ public abstract class AbstractFilteredIterator<E> extends AbstractBaseIterator<E
      *
      * @param iterator
      *         The {@link Iterator} to be filtered.
-     * @param filter
+     * @param iteratorFilter
      *         The {@link IteratorFilter}.
+     *
+     * @deprecated in favor of {@link AbstractFilteredIterator#AbstractFilteredIterator(Iterator, Filter)}.
      */
-    public AbstractFilteredIterator(final Iterator<E> iterator, final IteratorFilter<E> filter)
+    @Deprecated
+    public AbstractFilteredIterator(final Iterator<E> iterator, final IteratorFilter<E> iteratorFilter)
     {
         mIterator = iterator;
-        mFilter = filter;
+        // adapt the old interface to the new one
+        mFilter = new Filter<E>()
+        {
+            @Override
+            public boolean iterate(E argument)
+            {
+                return iteratorFilter.iterate(argument);
+            }
+        };
         moveToNext();
     }
 

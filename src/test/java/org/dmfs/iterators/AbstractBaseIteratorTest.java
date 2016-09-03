@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@ import org.omg.CORBA.Object;
 /**
  * Test {@link AbstractBaseIterator}.
  *
- * @author Marten Gajda <marten@dmfs.org>
+ * @author Marten Gajda
  */
 public class AbstractBaseIteratorTest
 {

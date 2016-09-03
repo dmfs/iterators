@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
+ *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,22 +13,24 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 package org.dmfs.iterators.filters;
 
-import org.dmfs.iterators.AbstractFilteredIterator.IteratorFilter;
+import org.dmfs.iterators.Filter;
 
 
 /**
- * An {@link IteratorFilter} that removes all <code>null</code> elements.
+ * A {@link Filter} that fails for all <code>null</code> elements.
  *
- * @author Marten Gajda <marten@dmfs.org>
+ * @param <T>
+ *         The type of the arguments.
+ *
+ * @author Marten Gajda
  */
-public final class NonNull<T> implements IteratorFilter<T>
+public final class NonNull<T> implements Filter<T>
 {
-    public final static IteratorFilter<Object> INSTANCE = new NonNull<Object>();
+    private final static Filter<Object> INSTANCE = new NonNull<Object>();
 
 
     @SuppressWarnings("unchecked")

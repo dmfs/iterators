@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,18 +22,18 @@ import org.junit.Test;
 import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 
 /**
- * @author Marten Gajda <marten@dmfs.org>
+ * @author Marten Gajda
  */
 public class EmptyIteratorTest
 {
     @Test
     public void instance() throws Exception
     {
-        assertTrue(EmptyIterator.instance() instanceof EmptyIterator);
+        assertNotNull(EmptyIterator.instance());
     }
 
 

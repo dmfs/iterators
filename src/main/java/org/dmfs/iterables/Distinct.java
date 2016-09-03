@@ -1,13 +1,13 @@
 /*
- * Copyright (C) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,7 +17,7 @@
 
 package org.dmfs.iterables;
 
-import org.dmfs.iterators.DistinctIterator;
+import org.dmfs.iterators.decorators.Filtered;
 
 import java.util.Iterator;
 
@@ -27,8 +27,9 @@ import java.util.Iterator;
  * occurrence of each iterated value.
  *
  * @param <T>
+ *         The type of the iterated elements.
  *
- * @author Marten Gajda <marten@dmfs.org>
+ * @author Marten Gajda
  */
 public final class Distinct<T> implements Iterable<T>
 {
@@ -37,7 +38,7 @@ public final class Distinct<T> implements Iterable<T>
 
 
     /**
-     * Creates an {@link Iterable} that iterates each value of the given {@link Iterable} exactly once.
+     * Creates an {@link Iterable} which iterates each value of the given {@link Iterable} exactly once.
      *
      * @param delegate
      *         Another {@link Iterable}.
@@ -51,7 +52,7 @@ public final class Distinct<T> implements Iterable<T>
     @Override
     public Iterator<T> iterator()
     {
-        return new DistinctIterator<T>(mDelegate.iterator());
+        return new Filtered<>(mDelegate.iterator(), new org.dmfs.iterators.filters.Distinct<T>());
     }
 
 }
