@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,12 +19,14 @@ package org.dmfs.iterators;
 
 import org.junit.Test;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.fail;
 
 
 public class SingletonIteratorTest
@@ -33,9 +35,9 @@ public class SingletonIteratorTest
     @Test
     public void test()
     {
-        List<String> list1 = Arrays.asList(new String[] { "1" });
-        List<String> list2 = Arrays.asList(new String[] { "a" });
-        List<String> list3 = Arrays.asList(new String[] { null });
+        List<String> list1 = Collections.singletonList("1");
+        List<String> list2 = Collections.singletonList("a");
+        List<String> list3 = Collections.singletonList((String) null);
 
         // test trivial cases without or with empty iterators
         assertIterateSame(list1.iterator(), new SingletonIterator<String>("1"));

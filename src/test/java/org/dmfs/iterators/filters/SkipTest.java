@@ -1,5 +1,23 @@
+/*
+ * Copyright 2017 dmfs GmbH
+ *
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.dmfs.iterators.filters;
 
+import org.dmfs.iterators.Filter;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -13,7 +31,7 @@ public class SkipTest
     public void testIterate()
     {
         // negative value doesn't skip anything
-        Skip<String> tested1 = new Skip<String>(-1);
+        Filter<String> tested1 = new Skip<String>(-1);
         assertTrue(tested1.iterate(null));
         assertTrue(tested1.iterate("MeToo"));
         assertTrue(tested1.iterate("1"));
@@ -24,7 +42,7 @@ public class SkipTest
         assertTrue(tested1.iterate("2"));
 
         // 0 value doesn't skip anything
-        Skip<String> tested2 = new Skip<String>(0);
+        Filter<String> tested2 = new Skip<String>(0);
         assertTrue(tested2.iterate(null));
         assertTrue(tested2.iterate("MeToo"));
         assertTrue(tested2.iterate("1"));
@@ -34,7 +52,7 @@ public class SkipTest
         assertTrue(tested2.iterate("Not me"));
         assertTrue(tested2.iterate("2"));
 
-        Skip<String> tested3 = new Skip<String>(1);
+        Filter<String> tested3 = new Skip<String>(1);
         assertFalse(tested3.iterate(null));
         assertTrue(tested3.iterate("MeToo"));
         assertTrue(tested3.iterate("1"));
@@ -44,7 +62,7 @@ public class SkipTest
         assertTrue(tested3.iterate("Not me"));
         assertTrue(tested3.iterate("2"));
 
-        Skip<String> tested4 = new Skip<String>(5);
+        Filter<String> tested4 = new Skip<String>(5);
         assertFalse(tested4.iterate(null));
         assertFalse(tested4.iterate("MeToo"));
         assertFalse(tested4.iterate("1"));
@@ -54,7 +72,7 @@ public class SkipTest
         assertTrue(tested4.iterate("Not me"));
         assertTrue(tested4.iterate("2"));
 
-        Skip<String> tested5 = new Skip<String>(10);
+        Filter<String> tested5 = new Skip<String>(10);
         assertFalse(tested5.iterate(null));
         assertFalse(tested5.iterate("MeToo"));
         assertFalse(tested5.iterate("1"));

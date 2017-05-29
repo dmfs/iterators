@@ -1,13 +1,13 @@
 /*
- * Copyright (C) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,7 +26,7 @@ import java.util.Iterator;
  * @param <E>
  *         The type of the values in the array.
  *
- * @author Marten Gajda <marten@dmfs.org>
+ * @author Marten Gajda
  */
 public final class ArrayIterator<E> extends AbstractBaseIterator<E>
 {
@@ -57,6 +57,10 @@ public final class ArrayIterator<E> extends AbstractBaseIterator<E>
     @Override
     public E next()
     {
-        return mValue[mNext++];
+        // wipe the values as we iterate, so we don't keep any values around longer than we need to.
+        E next = mValue[mNext];
+        mValue[mNext] = null;
+        mNext += 1;
+        return next;
     }
 }

@@ -1,13 +1,13 @@
 /*
- * Copyright (C) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,13 +17,17 @@
 
 package org.dmfs.iterators.utils;
 
-import org.dmfs.iterators.AbstractFilteredIterator.IteratorFilter;
 import org.dmfs.iterators.ArrayIterator;
-import org.dmfs.iterators.FilteredIterator;
-import org.dmfs.iterators.SerialIterator;
+import org.dmfs.iterators.EmptyIterator;
 import org.dmfs.iterators.SingletonIterator;
+import org.dmfs.iterators.decorators.Filtered;
+import org.dmfs.iterators.decorators.Serialized;
+import org.dmfs.iterators.filters.NonNull;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 
 /**
@@ -35,24 +39,10 @@ import java.util.*;
  * @param <E>
  *         The type of the elements in the set.
  *
- * @author Marten Gajda <marten@dmfs.org>
+ * @author Marten Gajda
  */
 public final class SlimSet<E> implements Set<E>, Cloneable
 {
-    /**
-     * An {@link IteratorFilter} that removes all <code>null</code> values.
-     */
-    private final static IteratorFilter<?> NULL_FILTER = new IteratorFilter<Object>()
-    {
-        public boolean iterate(Object element)
-        {
-            return element != null;
-        }
-
-
-        ;
-    };
-
     /**
      * Indicates that this set contains a null value. Since null values are not hashable, we handle them separately.
      */
@@ -332,7 +322,7 @@ public final class SlimSet<E> implements Set<E>, Cloneable
     {
         if (mSize == 0)
         {
-            return Collections.emptyIterator();
+            return EmptyIterator.instance();
         }
 
         if (mSize == 1 && mContainsNull)
@@ -340,11 +330,11 @@ public final class SlimSet<E> implements Set<E>, Cloneable
             return new SingletonIterator<E>(null);
         }
 
-        Iterator<E> result = new FilteredIterator<E>(new ArrayIterator<E>((E[]) mArray),
-                (IteratorFilter<E>) NULL_FILTER);
+        Iterator<E> result = new Filtered<E>(new ArrayIterator<E>((E[]) mArray),
+                NonNull.<E>instance());
         if (mContainsNull)
         {
-            return new SerialIterator<E>(result, new SingletonIterator<E>(null));
+            return new Serialized<>(result, new SingletonIterator<E>(null));
         }
         return result;
     }

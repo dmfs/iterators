@@ -1,13 +1,13 @@
 /*
- * Copyright (C) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,7 +27,7 @@ import java.util.NoSuchElementException;
  * @param <E>
  *         The type of the iterated value.
  *
- * @author Marten Gajda <marten@dmfs.org>
+ * @author Marten Gajda
  */
 public final class SingletonIterator<E> extends AbstractBaseIterator<E>
 {
@@ -36,7 +36,7 @@ public final class SingletonIterator<E> extends AbstractBaseIterator<E>
 
 
     /**
-     * Creates an {@link Iterator} that iterates the given value.
+     * Creates an {@link Iterator} that iterates (only) the given value.
      *
      * @param value
      *         The sole value to iterate.
@@ -59,7 +59,7 @@ public final class SingletonIterator<E> extends AbstractBaseIterator<E>
     {
         if (!mHasNext)
         {
-            throw new NoSuchElementException("no more elements to iterate");
+            throw new NoSuchElementException("No more elements to iterate.");
         }
         mHasNext = false;
         return mValue;

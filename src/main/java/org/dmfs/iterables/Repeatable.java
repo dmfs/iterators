@@ -1,13 +1,13 @@
 /*
- * Copyright (C) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,8 +26,9 @@ import java.util.List;
 
 
 /**
- * An {@link Iterable} that stores the result of a given {@link Iterator} and allows to re-iterate the values. This is
- * meant to speed up repeated access to slow iterators.
+ * An {@link Iterable} which iterates the elements of the given {@link Iterator}.
+ * <p>
+ * This is meant to speed up repeated access to slow iterators.
  * <p/>
  * Note that {@link Repeatable} needs to synchronize access to the original iterator (and an internal list), which
  * causes some overhead. So only use this if reiterating the original source is impossible or expensive (compared to the
@@ -36,7 +37,7 @@ import java.util.List;
  * @param <T>
  *         The type of the iterated elements.
  *
- * @author Marten Gajda <marten@dmfs.org>
+ * @author Marten Gajda
  */
 public final class Repeatable<T> implements Iterable<T>
 {
@@ -81,8 +82,6 @@ public final class Repeatable<T> implements Iterable<T>
      *
      * @param <T>
      *         The type of the iterated elements.
-     *
-     * @author Marten Gajda <marten@dmfs.org>
      */
     private final static class SynchronizedCachingIterator<T> extends AbstractBaseIterator<T>
     {
@@ -133,7 +132,7 @@ public final class Repeatable<T> implements Iterable<T>
 
                 // TODO: does it make sense to update mSafeElements in here?
 
-                // this needs to be synchronized as well since the add operation might leave the list in an invalid state for a short time (like during a
+                // this needs to be synchronized (even if mPos<mSafeElements) since the add operation might leave the list in an invalid state for a short time (like during a
                 // resize of the backing array).
                 return mCache.get(mPos++);
             }

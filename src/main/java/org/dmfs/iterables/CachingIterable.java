@@ -1,13 +1,13 @@
 /*
- * Copyright (C) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,7 +24,7 @@ import java.util.List;
 
 
 /**
- * An {@link Iterable} that stores the result of a given {@link Iterator} and allows to re-iterate the values. This is
+ * An {@link Iterable} that stores the result of a given {@link Iterator} and allows to re-test the values. This is
  * meant to speed up repeated access to slow iterators.
  * <p/>
  * Note that {@link CachingIterable} needs to synchronize access to the original iterator (and an internal list), which
@@ -34,8 +34,8 @@ import java.util.List;
  * @param <T>
  *         The type of the iterated elements.
  *
- * @author Marten Gajda <marten@dmfs.org>
- * @deprecated in favor of {@link Repeatable}.
+ * @author Marten Gajda
+ * @deprecated in favor of {@link Repeatable}, to be removed in version 2.0.
  */
 @Deprecated
 public final class CachingIterable<T> implements Iterable<T>
@@ -82,7 +82,7 @@ public final class CachingIterable<T> implements Iterable<T>
      * @param <T>
      *         The type of the iterated elements.
      *
-     * @author Marten Gajda <marten@dmfs.org>
+     * @author Marten Gajda
      */
     private final static class SynchronizedCachingIterator<T> implements Iterator<T>
     {

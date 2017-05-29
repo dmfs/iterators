@@ -1,13 +1,13 @@
 /*
- * Copyright (C) 2016 Marten Gajda <marten@dmfs.org>
+ * Copyright 2017 dmfs GmbH
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,41 +17,61 @@
 
 package org.dmfs.iterators.filters;
 
-import org.dmfs.iterators.AbstractFilteredIterator;
-import org.dmfs.iterators.AbstractFilteredIterator.IteratorFilter;
+import org.dmfs.iterators.Filter;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
- * An {@link IteratorFilter} that filters elements by a list of known elements to include in the result.
+ * A {@link Filter} that evaluates to {@code true} if the tested elements are in a given list of elements.
  *
  * @param <E>
- *         The element type.
+ *         The type of the arguments.
  *
- * @author Marten Gajda <marten@dmfs.org>
+ * @author Marten Gajda
  */
-public final class AnyOf<E> implements AbstractFilteredIterator.IteratorFilter<E>
+public final class AnyOf<E> implements Filter<E>
 {
-    private final E[] mIncludes;
+    private final Set<E> mPassing;
 
 
+    /**
+     * Creates an {@link AnyOf} {@link Filter} from an array of elements that will pass the test.
+     *
+     * @param passing
+     *         The elements that are supposed to pass the test.
+     */
     @SafeVarargs
-    public AnyOf(E... includes)
+    public AnyOf(E... passing)
     {
-        mIncludes = includes.clone();
+        this(Arrays.asList(passing));
+    }
+
+
+    /**
+     * Creates an {@link AnyOf} {@link Filter} from a {@link Collection} of elements that will pass the test.
+     *
+     * @param passing
+     *         A {@link Collection} of elements that are supposed to pass the test.
+     */
+    public AnyOf(Collection<E> passing)
+    {
+        this(new HashSet<E>(passing));
+    }
+
+
+    private AnyOf(Set<E> includes)
+    {
+        mPassing = includes;
     }
 
 
     @Override
     public boolean iterate(E element)
     {
-        for (E include : mIncludes)
-        {
-            if (include == null && element == null || include != null && include.equals(element))
-            {
-                return true;
-            }
-        }
-        return false;
+        return mPassing.contains(element);
     }
-
 }
