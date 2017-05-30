@@ -23,7 +23,7 @@ import java.util.NoSuchElementException;
 
 /**
  * An Iterator that is always empty.
- * <p/>
+ * <p>
  * Note, there is an empty iterator at {@link Collections#emptyIterator()}, but it's not available on older Android
  * versions.
  *

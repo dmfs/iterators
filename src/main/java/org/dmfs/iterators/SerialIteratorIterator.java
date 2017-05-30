@@ -45,7 +45,7 @@ public final class SerialIteratorIterator<E> extends AbstractBaseIterator<E>
      * Constructor of a {@link SerialIteratorIterator}.
      *
      * @param iteratorIterator
-     *         An {@link Iterator} that iterates other iterators of type &lt;E>.
+     *         An {@link Iterator} that iterates other iterators of type &lt;E&gt;.
      */
     public SerialIteratorIterator(final Iterator<Iterator<E>> iteratorIterator)
     {

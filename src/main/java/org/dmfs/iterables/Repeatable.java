@@ -29,7 +29,7 @@ import java.util.List;
  * An {@link Iterable} which iterates the elements of the given {@link Iterator}.
  * <p>
  * This is meant to speed up repeated access to slow iterators.
- * <p/>
+ * <p>
  * Note that {@link Repeatable} needs to synchronize access to the original iterator (and an internal list), which
  * causes some overhead. So only use this if reiterating the original source is impossible or expensive (compared to the
  * number of times you need to reiterate).

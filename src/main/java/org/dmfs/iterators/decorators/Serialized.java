@@ -59,7 +59,7 @@ public final class Serialized<E> extends AbstractBaseIterator<E>
      * {@link Iterator}.
      *
      * @param iteratorIterator
-     *         An {@link Iterator} that iterates other iterators of type &lt;E>.
+     *         An {@link Iterator} that iterates other iterators of type &lt;E&gt;.
      */
     public Serialized(final Iterator<Iterator<E>> iteratorIterator)
     {

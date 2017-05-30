@@ -59,7 +59,7 @@ public final class Flattened<E> extends AbstractBaseIterator<E>
      * Constructor of a {@link Flattened} {@link Iterator}.
      *
      * @param iterableIterator
-     *         An {@link Iterator} that iterates {@link Iterable}s of type &lt;E>.
+     *         An {@link Iterator} that iterates {@link Iterable}s of type &lt;E;gt;.
      */
     public Flattened(final Iterator<Iterable<E>> iterableIterator)
     {

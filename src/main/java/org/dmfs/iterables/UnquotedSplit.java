@@ -23,12 +23,12 @@ import java.util.Iterator;
 /**
  * An {@link Iterable} that iterates the elements of a CharSequence of a comma (or other character) separated value
  * list.
- * <p/>
+ * <p>
  * Example:
  * <p>
  * <pre>
  * <code>
- * 	Iterator<CharSequence> i = new Split("a, b,def,123", ',').iterator();
+ * 	Iterator&lt;CharSequence&gt; i = new Split("a, b,def,123", ',').iterator();
  * 	i.next(); // returns &quot;a&quot;
  * 	i.next(); // returns &quot; b&quot;
  * 	i.next(); // returns &quot;def&quot;
@@ -38,12 +38,12 @@ import java.util.Iterator;
  * </pre>
  * <p>
  * Separators between quote characters (") will be ignored.
- * <p/>
+ * <p>
  * Example:
  * <p>
  * <pre>
  * <code>
- * 	Iterator<CharSequence> i = new Split("\"a, b\",\"def,123\"", ',').iterator();
+ * 	Iterator&lt;CharSequence&gt; i = new Split("\"a, b\",\"def,123\"", ',').iterator();
  * 	i.next(); // returns &quot;a, b&quot;
  * 	i.next(); // returns &quot;def,123&quot;
  * 	i.hasNext(); // false
@@ -51,16 +51,16 @@ import java.util.Iterator;
  * </pre>
  * <p>
  * Iterating an empty CharSequence or a CharSequence without (unquoted) separators will return exactly one element.
- * <p/>
+ * <p>
  * Example:
  * <p>
  * <pre>
  * <code>
- * 	Iterator<CharSequence> i = new Split("", ',').iterator();
+ * 	Iterator&lt;CharSequence&gt; i = new Split("", ',').iterator();
  * 	i.next(); // returns &quot;&quot;
  * 	i.hasNext(); // false
  *
- * 	Iterator<CharSequence> i2 = new Split("\"abc,def\"", ',').iterator();
+ * 	Iterator&lt;CharSequence&gt; i2 = new Split("\"abc,def\"", ',').iterator();
  * 	i2.next(); // returns &quot;abc,def&quot;
  * 	i2.hasNext(); // false
  * </code>

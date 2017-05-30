@@ -33,7 +33,7 @@ import java.util.Set;
 /**
  * An open addressing {@link Set} implementation. While insert performance is mostly comparable to the default {@link
  * HashSet} implementation, this set aims to be much more memory efficient.
- * <p/>
+ * <p>
  * This class is not thread safe.
  *
  * @param <E>

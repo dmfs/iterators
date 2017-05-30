@@ -24,12 +24,12 @@ import java.util.NoSuchElementException;
 /**
  * An {@link Iterator} that iterates the elements of a CharSequence of a comma (or other character) separated value list
  * .
- * <p/>
+ * <p>
  * Example:
  * <p>
  * <pre>
  * <code>
- * 	Iterator<CharSequence> i = new UnquotedSplit<CharSequence>("a, b,def,123", ',');
+ * 	Iterator&lt;CharSequence&gt; i = new UnquotedSplit("a, b,def,123", ',');
  * 	i.next(); // returns &quot;a&quot;
  * 	i.next(); // returns &quot; b&quot;
  * 	i.next(); // returns &quot;def&quot;
@@ -39,12 +39,12 @@ import java.util.NoSuchElementException;
  * </pre>
  * <p>
  * Separators between quote characters will be ignored.
- * <p/>
+ * <p>
  * Example:
  * <p>
  * <pre>
  * <code>
- * 	Iterator<CharSequence> i = new UnquotedSplit<CharSequence>("\"a, b\",\"def,123\"", ',');
+ * 	Iterator&lt;CharSequence&gt; i = new UnquotedSplit("\"a, b\",\"def,123\"", ',');
  * 	i.next(); // returns &quot;a , b&quot;
  * 	i.next(); // returns &quot;def,123&quot;
  * 	i.hasNext(); // false
@@ -52,16 +52,16 @@ import java.util.NoSuchElementException;
  * </pre>
  * <p>
  * Iterating an empty CharSequence or a CharSequence without (unquoted) separators will return exactly one element.
- * <p/>
+ * <p>
  * Example:
  * <p>
  * <pre>
  * <code>
- * 	Iterator<CharSequence> i = new UnquotedSplit<CharSequence>("", ',');
+ * 	Iterator&lt;CharSequence&gt; i = new UnquotedSplit("", ',');
  * 	i.next(); // returns &quot;&quot;
  * 	i.hasNext(); // false
  *
- * 	Iterator<CharSequence> i2 = new UnquotedSplit<CharSequence>("\"abc,def\"", ',');
+ * 	Iterator&lt;CharSequence&gt; i2 = new UnquotedSplit("\"abc,def\"", ',');
  * 	i2.next(); // returns &quot;abc,def&quot;
  * 	i2.hasNext(); // false
  * </code>

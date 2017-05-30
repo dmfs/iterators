@@ -24,12 +24,12 @@ import java.util.Iterator;
 
 /**
  * An {@link Iterable} that iterates the elements of a String of a comma (or other character) separated value list.
- * <p/>
+ * <p>
  * Example:
  * <p>
  * <pre>
  * <code>
- * 	Iterator<String> i = new CsvIterable<String>("a, b,def,123", ',').iterator();
+ * 	Iterator&lt;String&gt; i = new CsvIterable&lt;String&gt;("a, b,def,123", ',').iterator();
  * 	i.next(); // returns &quot;a&quot;
  * 	i.next(); // returns &quot; b&quot;
  * 	i.next(); // returns &quot;def&quot;
@@ -39,12 +39,12 @@ import java.util.Iterator;
  * </pre>
  * <p>
  * Separators between quote characters (") will be ignored.
- * <p/>
+ * <p>
  * Example:
  * <p>
  * <pre>
  * <code>
- * 	Iterator<String> i = new CsvIterable<String>("\"a, b\",\"def,123\"", ',').iterator();
+ * 	Iterator&lt;String&gt; i = new CsvIterable&lt;String&gt;("\"a, b\",\"def,123\"", ',').iterator();
  * 	i.next(); // returns &quot;a, b&quot;
  * 	i.next(); // returns &quot;def,123&quot;
  * 	i.hasNext(); // false
@@ -52,16 +52,16 @@ import java.util.Iterator;
  * </pre>
  * <p>
  * Iterating an empty String or a string without (unquoted) separators will return exactly one element.
- * <p/>
+ * <p>
  * Example:
  * <p>
  * <pre>
  * <code>
- * 	Iterator<String> i = new CsvIterable<String>("", ',').iterator();
+ * 	Iterator&lt;String&gt; i = new CsvIterable&lt;String&gt;("", ',').iterator();
  * 	i.next(); // returns &quot;&quot;
  * 	i.hasNext(); // false
  *
- * 	Iterator<String> i2 = new CsvIterable<String>("\"abc,def\"", ',').iterator();
+ * 	Iterator&lt;String&gt; i2 = new CsvIterable&lt;String&gt;("\"abc,def\"", ',').iterator();
  * 	i2.next(); // returns &quot;abc,def&quot;
  * 	i2.hasNext(); // false
  * </code>

@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * An {@link Iterable} that stores the result of a given {@link Iterator} and allows to re-test the values. This is
  * meant to speed up repeated access to slow iterators.
- * <p/>
+ * <p>
  * Note that {@link CachingIterable} needs to synchronize access to the original iterator (and an internal list), which
  * causes some overhead. So only use this if reiterating the original source is impossible or expensive (compared to the
  * number of times you need to reiterate).
