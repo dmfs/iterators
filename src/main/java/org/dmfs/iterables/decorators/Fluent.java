@@ -15,62 +15,54 @@
  * limitations under the License.
  */
 
-package org.dmfs.iterators.decorators;
+package org.dmfs.iterables.decorators;
 
-import org.dmfs.iterators.AbstractBaseIterator;
+import org.dmfs.iterables.FluentIterable;
 import org.dmfs.iterators.Filter;
-import org.dmfs.iterators.FluentIterator;
 import org.dmfs.iterators.Function;
 
 import java.util.Iterator;
 
 
 /**
- * A basic {@link FluentIterator}.
+ * A basic {@link FluentIterable}.
  *
- * @author Marten Gajda
+ * @author Gabor Keszthelyi
  */
-public final class Fluent<E> extends AbstractBaseIterator<E> implements FluentIterator<E>
+public final class Fluent<E> implements FluentIterable<E>
 {
-    private final Iterator<E> mDelegate;
+    private final Iterable<E> mDelegate;
 
 
     /**
-     * Provides a {@link FluentIterator} for the given {@link Iterator}.
+     * Provides a {@link FluentIterable} for the given {@link Iterator}.
      *
      * @param delegate
-     *         The {@link Iterator} to decorate.
+     *         The {@link Iterable} to decorate.
      */
-    public Fluent(Iterator<E> delegate)
+    public Fluent(Iterable<E> delegate)
     {
         mDelegate = delegate;
     }
 
 
     @Override
-    public FluentIterator<E> filtered(Filter<E> filter)
+    public FluentIterable<E> filtered(Filter<E> filter)
     {
         return new Fluent<>(new Filtered<>(mDelegate, filter));
     }
 
 
     @Override
-    public <T> FluentIterator<T> mapped(Function<E, T> function)
+    public <T> FluentIterable<T> mapped(Function<E, T> function)
     {
-        return new Fluent<T>(new Mapped<>(mDelegate, function));
+        return new Fluent<>(new Mapped<>(mDelegate, function));
     }
 
 
     @Override
-    public boolean hasNext()
+    public Iterator<E> iterator()
     {
-        return mDelegate.hasNext();
-    }
-
-
-    @Override
-    public E next()
-    {
-        return mDelegate.next();
+        return mDelegate.iterator();
     }
 }
