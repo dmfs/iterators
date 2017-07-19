@@ -23,12 +23,11 @@ import org.dmfs.iterators.Filter;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThat;
 
 
 /**
@@ -92,20 +91,7 @@ public class FluentIterableTest
                     }
                 });
 
-        Iterator some = fluent.iterator();
-        assertTrue(some.hasNext());
-        assertEquals("1", some.next());
-        assertTrue(some.hasNext());
-        assertEquals("2", some.next());
-        assertTrue(some.hasNext());
-        assertEquals("3", some.next());
-        assertTrue(some.hasNext());
-        assertEquals("100", some.next());
-        assertTrue(some.hasNext());
-        assertEquals("200", some.next());
-        assertTrue(some.hasNext());
-        assertEquals("300", some.next());
-        assertFalse(some.hasNext());
+        assertThat(fluent, contains("1", "2", "3", "100", "200", "300"));
     }
 
 
@@ -125,26 +111,7 @@ public class FluentIterableTest
                             }
                         });
 
-        Iterator all = fluent.iterator();
-        assertTrue(all.hasNext());
-        assertEquals("1", all.next());
-        assertTrue(all.hasNext());
-        assertEquals("2", all.next());
-        assertTrue(all.hasNext());
-        assertEquals("3", all.next());
-        assertTrue(all.hasNext());
-        assertEquals("10", all.next());
-        assertTrue(all.hasNext());
-        assertEquals("20", all.next());
-        assertTrue(all.hasNext());
-        assertEquals("30", all.next());
-        assertTrue(all.hasNext());
-        assertEquals("100", all.next());
-        assertTrue(all.hasNext());
-        assertEquals("200", all.next());
-        assertTrue(all.hasNext());
-        assertEquals("300", all.next());
-        assertFalse(all.hasNext());
+        assertThat(fluent, contains("1", "2", "3", "10", "20", "30", "100", "200", "300"));
     }
 
 }
