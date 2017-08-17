@@ -43,7 +43,7 @@ public final class SerialIterator<E> extends AbstractBaseIterator<E>
     @SafeVarargs
     public SerialIterator(final Iterator<E>... iterators)
     {
-        mIterators = iterators.clone();
+        mIterators = iterators;
     }
 
 
