@@ -40,7 +40,7 @@ public abstract class DelegatingIterable<E> implements Iterable<E>
 
 
     @Override
-    public Iterator<E> iterator()
+    public final Iterator<E> iterator()
     {
         return mDelegate.iterator();
     }

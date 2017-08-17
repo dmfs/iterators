@@ -40,21 +40,21 @@ public abstract class DelegatingIterator<E> implements Iterator<E>
 
 
     @Override
-    public boolean hasNext()
+    public final boolean hasNext()
     {
         return mDelegate.hasNext();
     }
 
 
     @Override
-    public E next()
+    public final E next()
     {
         return mDelegate.next();
     }
 
 
     @Override
-    public void remove()
+    public final void remove()
     {
         mDelegate.remove();
     }
