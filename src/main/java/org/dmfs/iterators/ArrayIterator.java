@@ -57,10 +57,6 @@ public final class ArrayIterator<E> extends AbstractBaseIterator<E>
     @Override
     public E next()
     {
-        // wipe the values as we iterate, so we don't keep any values around longer than we need to.
-        E next = mValue[mNext];
-        mValue[mNext] = null;
-        mNext += 1;
-        return next;
+        return mValue[mNext++];
     }
 }
