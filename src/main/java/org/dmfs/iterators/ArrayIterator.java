@@ -43,7 +43,7 @@ public final class ArrayIterator<E> extends AbstractBaseIterator<E>
     @SafeVarargs
     public ArrayIterator(E... array)
     {
-        mValue = array.clone();
+        mValue = array;
     }
 
 

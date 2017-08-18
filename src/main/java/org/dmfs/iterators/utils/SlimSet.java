@@ -330,7 +330,7 @@ public final class SlimSet<E> implements Set<E>, Cloneable
             return new SingletonIterator<E>(null);
         }
 
-        Iterator<E> result = new Filtered<E>(new ArrayIterator<E>((E[]) mArray),
+        Iterator<E> result = new Filtered<E>(new ArrayIterator<E>((E[]) mArray.clone()),
                 NonNull.<E>instance());
         if (mContainsNull)
         {

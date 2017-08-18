@@ -43,7 +43,7 @@ public final class SerialIterator<E> extends AbstractBaseIterator<E>
     @SafeVarargs
     public SerialIterator(final Iterator<E>... iterators)
     {
-        mIterators = iterators.clone();
+        mIterators = iterators;
     }
 
 
@@ -52,9 +52,6 @@ public final class SerialIterator<E> extends AbstractBaseIterator<E>
     {
         while (mCurrentIterator < mIterators.length && !mIterators[mCurrentIterator].hasNext())
         {
-            // release the reference to this iterator early, we don't need it any longer
-            mIterators[mCurrentIterator] = null;
-            // move on to the next iterator
             ++mCurrentIterator;
         }
 

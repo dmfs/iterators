@@ -38,7 +38,7 @@ public final class ArrayIterable<T> implements Iterable<T>
     @SafeVarargs
     public ArrayIterable(T... elements)
     {
-        mArray = elements.clone();
+        mArray = elements;
     }
 
 
